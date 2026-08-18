@@ -20,6 +20,8 @@ func EncodeExport(f model.ExportFile) ([]byte, error) {
 
 func DecodeMap(b []byte) (map[string]int, error) {
 	var m map[string]int
-	_ = json.Unmarshal(b, &m)
+	if err := json.Unmarshal(b, &m); err != nil {
+		return nil, err
+	}
 	return m, nil
 }
